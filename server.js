@@ -9,12 +9,18 @@ require('dotenv').config(); // enable .env
 const app = express();
 
 // ✅ Secure and specific CORS setup
-app.use(cors({
-  origin: "https://mellow-rugelach-8f7232.netlify.app",
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
-}));
-
+app.use(
+  cors({
+    origin: [
+      "https://mellow-rugelach-8f7232.netlify.app", // ✅ Your Netlify frontend
+      "http://localhost:3000", // ✅ For local dev
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
+app.options("*", cors());
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 
