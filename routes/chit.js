@@ -4,7 +4,7 @@ const { chitPdf } = require('../utils/pdfChit'); // adjust path if utils is else
 
 const router = express.Router();
 
-// 🔹 Helper to generate next receipt number
+// Helper to generate next receipt number
 async function getNextReceiptNo() {
   const lastChit = await Chit.find({ type: 'CHIT' })
     .sort({ createdAt: -1 })
@@ -73,7 +73,7 @@ router.get('/:id/pdf', async (req, res) => {
     const filePath = chitPdf(res, chit); // PDF saved
     console.log("PDF saved at:", filePath);
 
-    // ✅ Save download record
+    // Save download record
     chit.downloads.push({ at: new Date(), filePath });
     await chit.save();
 

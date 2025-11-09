@@ -49,7 +49,7 @@ const chitSchema = new mongoose.Schema(
     },
     modeOfTransfer: {
       type: String,
-      enum: ["NEFT/RTGS", "UPI", "CASH", "CHEQUE"], // ✅ matches frontend
+      enum: ["NEFT/RTGS", "UPI", "CASH", "CHEQUE"], 
       required: true,
     },
     transactionId: {
@@ -58,11 +58,11 @@ const chitSchema = new mongoose.Schema(
     },
     collateralReceived: {
       type: String,
-      enum: ["YES", "NO"], // ✅ matches frontend
+      enum: ["YES", "NO"],
       required: true,
     },
 
-    // ✅ NEW: Track downloads
+   
     downloads: [
       {
         at: { type: Date, default: Date.now },
@@ -70,7 +70,7 @@ const chitSchema = new mongoose.Schema(
       }
     ]
   },
-  { timestamps: true, collection: "chits" } // 👈 keep options here
+  { timestamps: true, collection: "chits" } 
 );
 
 module.exports = mongoose.model("Chit", chitSchema);

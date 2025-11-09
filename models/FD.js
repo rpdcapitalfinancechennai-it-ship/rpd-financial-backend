@@ -29,7 +29,7 @@ const ReceiptSchema = new mongoose.Schema({
   monthlyInterest : Number
 }, { 
   timestamps: true,
-  collection: 'fds'   // ⬅️ Important
+  collection: 'fds'   
 });
 
 module.exports = mongoose.model('FD', ReceiptSchema);

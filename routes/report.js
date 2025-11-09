@@ -5,11 +5,8 @@ const router = express.Router();
 const Chit = require('../models/chit');
 const Receipt = require('../models/FD');
 const Loan = require('../models/loan');
-const { chitPdf } = require('../utils/pdfChit'); // your PDF util
+const { chitPdf } = require('../utils/pdfChit');
 
-/**
- * GET /report?start=YYYY-MM-DD&end=YYYY-MM-DD&type=CHIT|FD|LOAN
- */
 router.get('/', async (req, res) => {
   try {
     const { start, end, type } = req.query;
@@ -17,7 +14,7 @@ router.get('/', async (req, res) => {
 
     const startDate = new Date(start);
     const endDate = new Date(end);
-    endDate.setHours(23,59,59,999); // include full last day
+    endDate.setHours(23,59,59,999); 
 
     let Model;
     if (type === "CHIT") Model = Chit;
@@ -39,16 +36,14 @@ router.get('/', async (req, res) => {
   }
 });
 
-/**
- * GET /report/:id/pdf - generate PDF & record download
- */
+
 router.get('/:id/pdf', async (req, res) => {
   try {
-    const chit = await Chit.findById(req.params.id); // must NOT use .lean()
+    const chit = await Chit.findById(req.params.id); 
     if (!chit) return res.status(404).json({ error: "Chit not found" });
 
-    const filePath = chitPdf(res, chit); // generate PDF & send in response
-    chit.downloads.push({ at: new Date(), filePath }); // save download info
+    const filePath = chitPdf(res, chit); 
+    chit.downloads.push({ at: new Date(), filePath });
     await chit.save();
 
     console.log("PDF saved at:", filePath);

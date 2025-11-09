@@ -43,30 +43,17 @@ router.post('/', async (req, res) => {
   }
 });
 
-
-// 🔹 PDF download
-/* router.get('/:id/pdf', async (req, res) => {
-  const item = await Receipt.findById(req.params.id);
-  if (!item) return res.status(404).send('Not found');
-  return fdPdf(res, item.toObject());
-}); */
-
 router.get('/:id/pdf', async (req, res) => {
   try {
-    const fd = await FD.findById(req.params.id);   // ⬅️ no .lean()
+    const fd = await FD.findById(req.params.id);   // no .lean()
     if (!fd) return res.status(404).json({ error: "fd not found" });
 
     const filePath = fdPdf(res, fd); // PDF saved
     console.log("PDF saved at:", filePath);
 
-    // ✅ Save download record
+    // Save download record
     fd.downloads.push({ at: new Date(), filePath });
     await fd.save();
-
-    // If you don’t want to send PDF response twice, 
-    // don’t res.json here. chitPdf() already streams the file.
-    // But if you only want to return filePath:
-    // res.json({ path: filePath });
 
   } catch (err) {
     console.error("PDF generation error:", err);

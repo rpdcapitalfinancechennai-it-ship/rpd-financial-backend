@@ -4,7 +4,7 @@ const { loanPdf } = require('../utils/pdfLoan'); // adjust path if utils is else
 
 const router = express.Router();
 
-// 🔹 Helper to generate next receipt number
+// Helper to generate next receipt number
 async function getNextReceiptNo() {
   const lastLoan = await Loan.find({ type: 'LOAN' })
     .sort({ createdAt: -1 })
@@ -38,10 +38,10 @@ router.post('/', async (req, res) => {
       return res.status(400).json({ error: "Loan amount, ROI, and Interest per month must be numbers" });
     }
 
-    // 🔹 Generate receipt number
+    //Generate receipt number
     const receiptNo = await getNextReceiptNo();
 
-    // 🔹 Create Loan
+    //Create Loan
     const saved = await Loan.create({
       type: 'LOAN',
       customerId,
@@ -75,35 +75,17 @@ router.post('/', async (req, res) => {
   }
 });
 
-
-/* router.get('/:id/pdf', async (req, res) => {
-  try {
-    const loan = await Loan.findById(req.params.id).lean();
-    if (!loan) return res.status(404).json({ error: "Loan not found" });
-
-    loanPdf(res, loan);
-  } catch (err) {
-    console.error("PDF generation error:", err);
-    res.status(500).json({ error: err.message });
-  }
-}); */
-
 router.get('/:id/pdf', async (req, res) => {
   try {
-    const loan = await Loan.findById(req.params.id);   // ⬅️ no .lean()
+    const loan = await Loan.findById(req.params.id);   // no .lean()
     if (!loan) return res.status(404).json({ error: "Loan not found" });
 
     const filePath = loanPdf(res, loan); // PDF saved
     console.log("PDF saved at:", filePath);
 
-    // ✅ Save download record
+    // Save download record
     loan.downloads.push({ at: new Date(), filePath });
     await loan.save();
-
-    // If you don’t want to send PDF response twice, 
-    // don’t res.json here. chitPdf() already streams the file.
-    // But if you only want to return filePath:
-    // res.json({ path: filePath });
 
   } catch (err) {
     console.error("PDF generation error:", err);

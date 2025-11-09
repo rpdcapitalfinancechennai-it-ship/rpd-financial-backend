@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 
 const JWT_SECRET = "supersecretkey"; // production: use .env
 
-// ✅ Register
+// Register
 router.post("/register", async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -23,7 +23,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
-// ✅ Login
+//Login
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;

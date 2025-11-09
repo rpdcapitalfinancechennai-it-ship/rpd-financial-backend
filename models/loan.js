@@ -33,7 +33,7 @@ const loanSchema = new mongoose.Schema(
     },
     modeOfTransfer: {
       type: String,
-      enum: ["NEFT/RTGS", "UPI", "CASH", "CHEQUE"], // ✅ matches frontend
+      enum: ["NEFT/RTGS", "UPI", "CASH", "CHEQUE"],
       required: true,
     },
     rateOfInterest: {
@@ -42,7 +42,7 @@ const loanSchema = new mongoose.Schema(
     },
     paymentMethod: {
       type: String,
-      enum: ["MI", "ME", "DR"], // ✅ matches frontend
+      enum: ["MI", "ME", "DR"], 
       required: true,
     },
     interestPerMonth: {
@@ -65,7 +65,7 @@ const loanSchema = new mongoose.Schema(
     },
     collateralReceived: {
       type: String,
-      enum: ["YES", "NO"], // ✅ matches frontend
+      enum: ["YES", "NO"],
       required: true,
     },
      downloads: [
