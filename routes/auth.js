@@ -28,7 +28,7 @@ router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const allowedEmail = "rpd@gmail.com";
+    const allowedEmail = "rpdcf@gmail.com";
 
     // Step 1: Only allow this one email (case-insensitive, no spaces)
     if (email.toLowerCase().trim() !== allowedEmail.toLowerCase()) {
