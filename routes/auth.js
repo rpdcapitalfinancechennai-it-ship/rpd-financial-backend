@@ -28,18 +28,36 @@ router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const user = await User.findOne({ email });
-    if (!user) return res.status(400).json({ message: "Invalid credentials" });
+    const allowedEmail = "rpd@gmail.com";
 
+    // Step 1: Only allow this one email (case-insensitive, no spaces)
+    if (email.toLowerCase().trim() !== allowedEmail.toLowerCase()) {
+      return res.status(403).json({ message: "Access denied: unauthorized email" });
+    }
+
+    // Step 2: Find user
+    const user = await User.findOne({ email: allowedEmail });
+    if (!user) return res.status(400).json({ message: "User not found" });
+
+    // Step 3: Check password
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });
+    if (!isMatch) return res.status(400).json({ message: "Invalid password" });
 
+    // Step 4: Generate token
     const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: "1h" });
-    res.json({ token, user: { id: user._id, name: user.name, email: user.email } });
+
+    // Step 5: Send success response
+    res.json({
+      message: "Admin login successful",
+      token,
+      user: { id: user._id, name: user.name, email: user.email },
+    });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Server error" });
   }
 });
+
+
 
 module.exports = router;
