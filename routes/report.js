@@ -23,11 +23,9 @@ router.get('/', async (req, res) => {
     else return res.status(400).json({ error: "Invalid type" });
 
     const data = await Model.find({
-      $or: [
-        { createdAt: { $gte: startDate, $lte: endDate } },
-        { "downloads.at": { $gte: startDate, $lte: endDate } }
-      ]
+      createdAt: { $gte: startDate, $lte: endDate }
     }).select("receiptNo chitGroup accountNo loanNo createdAt downloads");
+
 
     res.json(data);
   } catch (e) {
