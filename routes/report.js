@@ -10,11 +10,12 @@ const { chitPdf } = require('../utils/pdfChit');
 router.get('/', async (req, res) => {
   try {
     const { start, end, type } = req.query;
-    if (!start || !end || !type) return res.status(400).json({ error: "start, end, type required" });
+    if (!start || !end || !type)
+      return res.status(400).json({ error: "start, end, type required" });
 
-    const startDate = new Date(start);
-    const endDate = new Date(end);
-    endDate.setHours(23,59,59,999); 
+    // Force UTC to avoid timezone issues on Render
+    const startDate = new Date(`${start}T00:00:00.000Z`);
+    const endDate = new Date(`${end}T23:59:59.999Z`);
 
     let Model;
     if (type === "CHIT") Model = Chit;
@@ -24,8 +25,8 @@ router.get('/', async (req, res) => {
 
     const data = await Model.find({
       createdAt: { $gte: startDate, $lte: endDate }
-    }).select("receiptNo chitGroup accountNo loanNo createdAt downloads");
-
+    })
+      .select("receiptNo chitGroup accountNo loanNo createdAt downloads");
 
     res.json(data);
   } catch (e) {
@@ -33,6 +34,7 @@ router.get('/', async (req, res) => {
     res.status(500).json({ error: e.message });
   }
 });
+
 
 
 router.get('/:id/pdf', async (req, res) => {

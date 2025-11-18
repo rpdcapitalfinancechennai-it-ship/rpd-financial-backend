@@ -37,7 +37,7 @@ app.use('/api/fd', require('./routes/fd'));
 app.use('/api/chit', require('./routes/chit'));
 app.use('/api/report', require('./routes/report'));
 app.use('/receipts', express.static(path.join(__dirname, 'receipts')));
-
+app.use('/api/contact', require('./routes/home'));
 //  Port setup for Render
 const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => console.log(`API running on port ${PORT}`));
