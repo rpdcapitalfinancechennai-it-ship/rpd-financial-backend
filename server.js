@@ -26,6 +26,9 @@ app.use(bodyParser.json());
 // MongoDB connection
 const uri = process.env.MONGO_URI || "mongodb+srv://rpdcapitalfinanceoffice_db_user:rpddatabase@rpd.azqjbtb.mongodb.net/rpd-financial?retryWrites=true&w=majority&appName=rpd";
 
+console.log("GMAIL_USER:", process.env.GMAIL_USER);
+console.log("GMAIL_PASS:", process.env.GMAIL_APP_PASSWORD ? "LOADED" : "MISSING");
+
 mongoose.connect(uri)
   .then(() => console.log("MongoDB connected"))
   .catch(err => console.log("MongoDB connection error:", err));
