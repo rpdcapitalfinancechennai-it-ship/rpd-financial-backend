@@ -32,17 +32,15 @@ console.log("GMAIL_USER:", process.env.GMAIL_USER);
 console.log("GMAIL_PASS:", process.env.GMAIL_APP_PASSWORD ? "LOADED" : "MISSING");
 
 const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
+  host: "smtp.sendgrid.net",
   port: 587,
   secure: false,
   auth: {
-    user: process.env.GMAIL_USER,
-    pass: process.env.GMAIL_APP_PASSWORD,
+    user: "apikey",
+    pass: process.env.SENDGRID_API_KEY
   },
-  connectionTimeout: 10000,
-  greetingTimeout: 10000,
-  socketTimeout: 10000,
 });
+
 
 transporter.verify((err, success) => {
   if (err) {
@@ -51,7 +49,7 @@ transporter.verify((err, success) => {
     console.log("SMTP READY ✅");
   }
 });
-
+/*K964PKV8U6KW6QSQGENE28P9*/
 
 mongoose.connect(uri)
   .then(() => console.log("MongoDB connected"))
