@@ -14,19 +14,19 @@ module.exports = (transporter) => {
         });
       }
 
-      const mailOptions = {
-  from: 'test@sendgrid.net',  // ← SendGrid test email - WORKS INSTANTLY
-  to: 'rpdcapitalfinancechennai@gmail.com',
-  subject: `New Enquiry – ${service}`,
-  html: `
-    <h3>New Contact Enquiry</h3>
-    <p><strong>Service:</strong> ${service}</p>
-    <p><strong>Name:</strong> ${name}</p>
-    <p><strong>Email:</strong> ${email}</p>
-    <p><strong>Phone:</strong> ${phone || 'N/A'}</p>
-    <p><strong>Message:</strong><br/>${message}</p>
-  `,
-};
+    const mailOptions = {
+      from: 'test@sendgrid.net',  // ← SendGrid test email - WORKS INSTANTLY
+      to: 'rpdcapitalfinancechennai@gmail.com',
+      subject: `New Enquiry – ${service}`,
+      html: `
+        <h3>New Contact Enquiry</h3>
+        <p><strong>Service:</strong> ${service}</p>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${phone || 'N/A'}</p>
+        <p><strong>Message:</strong><br/>${message}</p>
+      `,
+    };
 
 
 

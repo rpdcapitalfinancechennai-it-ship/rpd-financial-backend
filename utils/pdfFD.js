@@ -126,8 +126,9 @@ const rightFields = [
     'Period',
     'ROI %',
     'Interest Payable',
+    'Monthly Interest Date',
     'Payment Due Date',
-    'Payment Due Amount'
+    'Payment Due Amount',
   ];
 
   const values = [
@@ -137,6 +138,7 @@ const rightFields = [
   data.roiPerAnnum ? `${data.roiPerAnnum}%` : '',
   data.interestPayable || '',
   data.paymentDueDate ? new Date(data.paymentDueDate).toLocaleDateString('en-IN') : '',
+  data.monthlyInterestDate ? new Date(data.monthlyInterestDate).toLocaleDateString('en-IN') : '',
   formatAmount(data.paymentDueAmount)
 ];
 

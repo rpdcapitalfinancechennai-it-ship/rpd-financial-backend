@@ -32,6 +32,7 @@ router.post('/', async (req, res) => {
       date: new Date(data.date),
       receivedDate: data.receivedDate ? new Date(data.receivedDate) : null,
       paymentDueDate: data.paymentDueDate ? new Date(data.paymentDueDate) : null,
+      monthlyInterestDate: data.monthlyInterestDate ? new Date(data.monthlyInterestDate) : null,
       receiptNo,
     });
 
