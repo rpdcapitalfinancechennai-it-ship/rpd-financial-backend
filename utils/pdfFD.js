@@ -143,7 +143,7 @@ const rightFields = [
 ];
 
 
-  const widths = [75, 85, 48, 45, 80, 85, 100];
+  const widths = [75, 85, 48, 45, 80, 85, 100, 100];
   const rowHeight = 32;
 
   // Header row
