@@ -126,7 +126,6 @@ const rightFields = [
     'Period',
     'ROI %',
     'Interest Payable',
-    'Monthly Interest Date',
     'Payment Due Date',
     'Payment Due Amount',
   ];
@@ -138,12 +137,12 @@ const rightFields = [
   data.roiPerAnnum ? `${data.roiPerAnnum}%` : '',
   data.interestPayable || '',
   data.paymentDueDate ? new Date(data.paymentDueDate).toLocaleDateString('en-IN') : '',
-  data.monthlyInterestDate ? new Date(data.monthlyInterestDate).toLocaleDateString('en-IN') : '',
+  //data.monthlyInterestDate ? new Date(data.monthlyInterestDate).toLocaleDateString('en-IN') : '',
   formatAmount(data.paymentDueAmount)
 ];
 
 
-  const widths = [75, 85, 48, 45, 80, 85, 100, 100];
+  const widths = [75, 85, 48, 45, 80, 85, 100];
   const rowHeight = 32;
 
   // Header row
@@ -176,6 +175,8 @@ const rightFields = [
 
     x += widths[i];
   });
+
+const showMonthly = data.interestPayable === "Monthly";
 
  
  // ✅ PAYEE & NOMINEE DETAILS SECTION (Clean Alignment)
@@ -244,10 +245,39 @@ doc.font('Times-Roman')
        align: 'left'
    });
 
-doc.font('Times-Roman')
-   .text("Monthly Interest Payable :", rightColX, accountDetailsY, { width: labelWidth1 });
-doc.font('Times-Roman')
-   .text(data.monthlyInterest || '-', rightColX + labelWidth1 + textOffset, accountDetailsY);
+if (showMonthly) {
+  // Monthly Interest Payable
+  doc.text(
+    "Monthly Interest Payable :",
+    rightColX,
+    accountDetailsY,
+    { width: labelWidth1 }
+  );
+
+  doc.text(
+    data.monthlyInterest ? formatAmount(data.monthlyInterest) : '-',
+    rightColX + labelWidth1 + textOffset,
+    accountDetailsY
+  );
+
+  // Monthly Interest Date (same row – right side)
+  const dateLabelX = rightColX + 210; // adjust if needed
+  const dateValueX = dateLabelX + 110;
+
+  doc.text(
+    "Interest Date :",
+    dateLabelX,
+    accountDetailsY,
+    { width: 110 }
+  );
+
+  doc.text(
+    data.monthlyInterestDate ? formatDate(data.monthlyInterestDate) : '-',
+    dateValueX,
+    accountDetailsY
+  );
+}
+
 
 
 
