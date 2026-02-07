@@ -234,50 +234,55 @@ doc.font('Times-Roman')
        align: 'left'
    });
 
-// ---- Row 5: Account Details (Full Row)
-const accountDetailsY = guardianAddressY + rowGap;
-
-doc.font('Times-Roman')
-   .text("Account Details :", leftColX, accountDetailsY, { width: labelWidth1 });
-doc.font('Times-Roman')
-   .text(data.accountDetails || '-', leftColX + labelWidth1 + textOffset, accountDetailsY, {
-       width: 200,
-       align: 'left'
-   });
+// ---- Row 5: Monthly / Account base row
+const monthlyRowY = guardianAddressY + rowGap;
 
 if (showMonthly) {
-  // Monthly Interest Payable
   doc.text(
     "Monthly Interest Payable :",
     rightColX,
-    accountDetailsY,
+    monthlyRowY,
     { width: labelWidth1 }
   );
 
   doc.text(
     data.monthlyInterest ? formatAmount(data.monthlyInterest) : '-',
     rightColX + labelWidth1 + textOffset,
-    accountDetailsY
+    monthlyRowY
   );
 
-  // Monthly Interest Date (same row – right side)
-  const dateLabelX = rightColX + 210; // adjust if needed
+  const dateLabelX = rightColX + 210;
   const dateValueX = dateLabelX + 110;
 
   doc.text(
     "Interest Date :",
     dateLabelX,
-    accountDetailsY,
+    monthlyRowY,
     { width: 110 }
   );
 
   doc.text(
     data.monthlyInterestDate ? formatDate(data.monthlyInterestDate) : '-',
     dateValueX,
-    accountDetailsY
+    monthlyRowY
   );
 }
 
+// ---- Account Details position (auto-adjust)
+const accountDetailsY = showMonthly
+  ? monthlyRowY + rowGap   // below monthly row
+  : monthlyRowY;           // directly after guardian address
+
+
+doc.font('Times-Roman')
+   .text("Account Details :", leftColX, accountDetailsY, { width: labelWidth1 });
+
+doc.text(
+  data.accountDetails || '-',
+  leftColX + labelWidth1 + textOffset,
+  accountDetailsY,
+  { width: 400, align: 'left' }
+);
 
 
 
