@@ -246,7 +246,7 @@ doc.font('Times-Roman')
    });
 
 // ---- Row 6: Monthly Payable
-const monthlyRowY = payY + rowGap;
+const monthlyRowY = accountDetailsY + rowGap;
 
 doc.font('Times-Roman')
    .text("Monthly Payable :", leftColX, monthlyRowY, { width: labelWidth1 });
