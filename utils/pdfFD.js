@@ -251,12 +251,12 @@ const monthlyRowY = accountDetailsY + rowGap;
 doc.font('Times-Roman')
    .text("Monthly Payable :", leftColX, monthlyRowY, { width: labelWidth1 });
 doc.font('Times-Roman')
-   .text(data.nomineeName || '-', leftColX + labelWidth1 + textOffset, monthlyRowY);
+   .text(data.monthlyInterest || '-', leftColX + labelWidth1 + textOffset, monthlyRowY);
 
 doc.font('Times-Roman')
    .text("Monthly Payable Date :", rightColX, monthlyRowY, { width: labelWidth1 });
 doc.font('Times-Roman')
-   .text(data.guardianName || '-', rightColX + labelWidth1 + textOffset, monthlyRowY);
+   .text(data.monthlyInterestDate || '-', rightColX + labelWidth1 + textOffset, monthlyRowY);
 
 
 
