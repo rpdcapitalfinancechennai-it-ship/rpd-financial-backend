@@ -142,7 +142,7 @@ const rightFields = [
 ];
 
 
-  const widths = [75, 85, 48, 45, 80, 85, 100];
+  const widths = [75, 85, 48, 45, 80, 85, 100, 100];
   const rowHeight = 32;
 
   // Header row
@@ -234,55 +234,29 @@ doc.font('Times-Roman')
        align: 'left'
    });
 
-// ---- Row 5: Monthly / Account base row
-const monthlyRowY = guardianAddressY + rowGap;
-
-if (showMonthly) {
-  doc.text(
-    "Monthly Interest Payable :",
-    rightColX,
-    monthlyRowY,
-    { width: labelWidth1 }
-  );
-
-  doc.text(
-    data.monthlyInterest ? formatAmount(data.monthlyInterest) : '-',
-    rightColX + labelWidth1 + textOffset,
-    monthlyRowY
-  );
-
-  const dateLabelX = rightColX + 210;
-  const dateValueX = dateLabelX + 110;
-
-  doc.text(
-    "Interest Date :",
-    dateLabelX,
-    monthlyRowY,
-    { width: 110 }
-  );
-
-  doc.text(
-    data.monthlyInterestDate ? formatDate(data.monthlyInterestDate) : '-',
-    dateValueX,
-    monthlyRowY
-  );
-}
-
-// ---- Account Details position (auto-adjust)
-const accountDetailsY = showMonthly
-  ? monthlyRowY + rowGap   // below monthly row
-  : monthlyRowY;           // directly after guardian address
-
+// ---- Row 5: Account Details (Full Row)
+const accountDetailsY = guardianAddressY + rowGap;
 
 doc.font('Times-Roman')
    .text("Account Details :", leftColX, accountDetailsY, { width: labelWidth1 });
+doc.font('Times-Roman')
+   .text(data.accountDetails || '-', leftColX + labelWidth1 + textOffset, accountDetailsY, {
+       width: 200,
+       align: 'left'
+   });
 
-doc.text(
-  data.accountDetails || '-',
-  leftColX + labelWidth1 + textOffset,
-  accountDetailsY,
-  { width: 400, align: 'left' }
-);
+// ---- Row 6: Monthly Payable
+const monthlyRowY = payY + rowGap;
+
+doc.font('Times-Roman')
+   .text("Monthly Payable :", leftColX, monthlyRowY, { width: labelWidth1 });
+doc.font('Times-Roman')
+   .text(data.nomineeName || '-', leftColX + labelWidth1 + textOffset, monthlyRowY);
+
+doc.font('Times-Roman')
+   .text("Monthly Payable Date :", rightColX, monthlyRowY, { width: labelWidth1 });
+doc.font('Times-Roman')
+   .text(data.guardianName || '-', rightColX + labelWidth1 + textOffset, monthlyRowY);
 
 
 
