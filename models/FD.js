@@ -17,7 +17,7 @@ const ReceiptSchema = new mongoose.Schema({
   roiPerAnnum: Number,
   interestPayable: { type: String, enum: ['Monthly', 'Maturity'] },
   paymentDueDate: Date,
-  monthlyInterestDate : Date,
+  monthlyInterestDate : String,
   paymentDueAmount: Number,
   payableTo: String,
   nomineeName: String,

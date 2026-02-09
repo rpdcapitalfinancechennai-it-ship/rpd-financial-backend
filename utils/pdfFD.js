@@ -256,7 +256,7 @@ doc.font('Times-Roman')
 doc.font('Times-Roman')
    .text("Monthly Payable Date :", rightColX, monthlyRowY, { width: labelWidth1 });
 doc.font('Times-Roman')
-   .text(formatDate(data.monthlyInterestDate) || '-', rightColX + labelWidth1 + textOffset, monthlyRowY);
+   .text(data.monthlyInterestDate || '-', rightColX + labelWidth1 + textOffset, monthlyRowY);
 
 
 
