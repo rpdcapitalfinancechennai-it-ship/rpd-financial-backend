@@ -207,21 +207,21 @@ doc.font('Times-Roman')
 doc.font('Times-Roman')
    .text(data.nomineeName || '-', leftColX + labelWidth1 + textOffset, nomineeRowY);
 
-doc.font('Times-Roman')
-   .text("Nominee Address :", rightColX, nomineeRowY, { width: labelWidth1 });
-doc.font('Times-Roman')
-   .text(data.nomineeAddress || '-', rightColX + labelWidth1 + textOffset, nomineeRowY);
-
-// // ---- Row 3: Nominee Address (Full Row)
-// const nomineeAddressY = nomineeRowY + rowGap;
-
 // doc.font('Times-Roman')
-//    .text("Nominee Address :", leftColX, nomineeAddressY, { width: labelWidth1 });
+//    .text("Nominee Address :", rightColX, nomineeRowY, { width: labelWidth1 });
 // doc.font('Times-Roman')
-//    .text(data.nomineeAddress || '-', leftColX + labelWidth1 + textOffset, nomineeAddressY, {
-//        width: 400,
-//        align: 'left'
-//    });
+//    .text(data.nomineeAddress || '-', rightColX + labelWidth1 + textOffset, nomineeRowY);
+
+// ---- Row 3: Nominee Address (Full Row)
+const nomineeAddressY = nomineeRowY + rowGap;
+
+doc.font('Times-Roman')
+   .text("Nominee Address :", leftColX, nomineeAddressY, { width: labelWidth1 });
+doc.font('Times-Roman')
+   .text(data.nomineeAddress || '-', leftColX + labelWidth1 + textOffset, nomineeAddressY, {
+       width: 400,
+       align: 'left'
+   });
 
 // // ---- Row 4: Guardian Address (Full Row)
 // const guardianAddressY = nomineeAddressY + rowGap;
@@ -235,7 +235,7 @@ doc.font('Times-Roman')
 //    });
 
 // ---- Row 3: Account Details (Full Row)
-const accountDetailsY = nomineeRowY + rowGap;
+const accountDetailsY = nomineeAddressY + rowGap;
 
 doc.font('Times-Roman')
    .text("Account Details :", leftColX, accountDetailsY, { width: labelWidth1 });
