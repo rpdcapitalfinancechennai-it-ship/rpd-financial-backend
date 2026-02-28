@@ -200,7 +200,7 @@ const headers = [
   'Mode of Transfer',
   'ROI %',
   'Payment Method (MI/ME/DR)',
-  'Interest payable Amonut'
+  'Interest Payable Amount'
 ];
 
 // Table Y positions
