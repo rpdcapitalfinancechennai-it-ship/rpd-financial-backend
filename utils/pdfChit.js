@@ -13,11 +13,11 @@ function formatAmount(amount) {
 // ✅ Custom Header
 function drawHeader(doc) {
   const logoPath = path.join(__dirname, '../assets/logo.png');
-  try { doc.image(logoPath, 40, 40, { width: 90 }); } catch (_) {}
+  try { doc.image(logoPath, 40, 35, { width: 130 }); } catch (_) {}
 
   const headerTop = 40;
 
-  doc.fontSize(16).font('Times-Bold')
+  doc.fontSize(22).font('Times-Bold')
      .text('RPD CAPITAL FINANCE', 0, headerTop, { align: 'center' });
 
   doc.fontSize(11).font('Times-Bold')

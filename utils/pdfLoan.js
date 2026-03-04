@@ -72,19 +72,26 @@ const path = require('path');
 const fs = require('fs');
 
 function formatDate(d) {
-  return d ? new Date(d).toLocaleDateString('en-IN') : '';
+  if (!d) return '';
+
+  const date = new Date(d);
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+
+  return `${day}/${month}/${year}`;
 }
 
 // ✅ Custom Header
 function drawHeader(doc) {
   const logoPath = path.join(__dirname, '../assets/logo.png');
-  try { doc.image(logoPath, 40, 40, { width: 90 }); } catch (_) {} // logo a bit lower & bigger
+  try { doc.image(logoPath, 40, 35, { width: 130 }); } catch (_) {} // logo a bit lower & bigger
 
   // Move header block slightly down (y = 40 → top margin)
   const headerTop = 40;
 
   // Company name (bold, left aligned at center region)
-  doc.fontSize(16).font('Times-Bold')
+  doc.fontSize(22).font('Times-Bold')
      .text('RPD CAPITAL FINANCE', 0, headerTop, { align: 'center' });
 
   // Reg No on the same line (right side)
@@ -207,7 +214,7 @@ const headers = [
 const rowY = tableY + 20;
 
 const values = [
-  data.loanOpenDate ? new Date(data.loanOpenDate).toLocaleDateString() : '',
+  formatDate(data.loanOpenDate),
   data.loanNo || '',
   formatAmount(data.loanAmount),
   data.modeOfTransfer || '',
