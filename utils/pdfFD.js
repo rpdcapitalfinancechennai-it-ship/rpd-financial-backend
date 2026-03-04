@@ -9,7 +9,7 @@ function formatDate(d) {
 // ✅ Custom Header
 function drawHeader(doc) {
   const logoPath = path.join(__dirname, '../assets/logo.png');
-  try {doc.image(logoPath, 40, 32, { width: 130 }); } catch (_) {} // logo a bit lower & bigger
+  try {doc.image(logoPath, 40, 30, { width: 130 }); } catch (_) {} // logo a bit lower & bigger
 
   const headerTop = 40;
 
