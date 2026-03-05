@@ -50,7 +50,7 @@ transporter.verify((error) => {
 });
 
 //  Routes
-app.use('/api/contact', require('./routes/contact')(transporter));
+app.use('/api/contact', require('./routes/contact')());
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/loan', require('./routes/loan'));
 app.use('/api/fd', require('./routes/fd'));
