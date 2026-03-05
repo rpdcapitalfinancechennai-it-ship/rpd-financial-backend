@@ -15,7 +15,7 @@ module.exports = () => {
 
       await resend.emails.send({
         from: 'onboarding@resend.dev',
-        to: 'rpdcapitalfinancechennai@gmail.com',
+        to: 'rpdcapitalfinanceoffice@gmail.com',
         subject: `New Enquiry – ${service}`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;">
