@@ -21,7 +21,7 @@ module.exports = () => {
 
       // 1️⃣ EMAIL TO ADMIN
       await resend.emails.send({
-        from: "RPD Capital Finance <noreply@rpdcapitalfinance.com>",
+        from: "RPD Capital Finance <onboarding@resend.dev>",
         to: "rpdcapitalfinanceoffice@gmail.com",
         reply_to: email,
         subject: `New Enquiry – ${service}`,
@@ -42,7 +42,7 @@ module.exports = () => {
 
       // 2️⃣ CONFIRMATION EMAIL TO USER
       await resend.emails.send({
-        from: "RPD Capital Finance <noreply@rpdcapitalfinance.com>",
+        from: "RPD Capital Finance <onboarding@resend.dev>",
         to: email,
         subject: "We received your enquiry",
         html: `
