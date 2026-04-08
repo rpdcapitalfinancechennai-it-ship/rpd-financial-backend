@@ -103,54 +103,111 @@ module.exports = () => {
          ADMIN EMAIL
       ----------------------- */
 
-      const adminContent = `
-        <!-- Alert Badge -->
-        <div style="background:#EFF6FF;border-left:4px solid #2563A8;border-radius:0 8px 8px 0;padding:14px 18px;margin-bottom:28px;">
-          <p style="margin:0;font-size:13px;font-weight:600;color:#1E40AF;text-transform:uppercase;letter-spacing:0.5px;">New Enquiry Received</p>
-        </div>
+     /* -----------------------
+   ADMIN EMAIL WRAPPER (Green & Gold)
+----------------------- */
 
-        <h2 style="margin:0 0 24px;font-size:20px;color:#0F172A;font-weight:700;">Lead Details</h2>
+const adminEmailHtml = `
+  <div style="margin:0;padding:0;background-color:#F0F7F1;font-family:'Segoe UI',Arial,sans-serif;">
+    <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#F0F7F1;padding:40px 0;">
+      <tr>
+        <td align="center">
+          <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;">
 
-        <!-- Info Cards Grid -->
-        <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;">
-          <tr>
-            <td width="48%" style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:16px;vertical-align:top;">
-              <p style="margin:0 0 4px;font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.8px;">Full Name</p>
-              <p style="margin:0;font-size:15px;font-weight:600;color:#0F172A;">${name}</p>
-            </td>
-            <td width="4%"></td>
-            <td width="48%" style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:16px;vertical-align:top;">
-              <p style="margin:0 0 4px;font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.8px;">Service Requested</p>
-              <p style="margin:0;font-size:15px;font-weight:600;color:#2563A8;">${service}</p>
-            </td>
-          </tr>
-          <tr><td colspan="3" style="padding:8px 0;"></td></tr>
-          <tr>
-            <td width="48%" style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:16px;vertical-align:top;">
-              <p style="margin:0 0 4px;font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.8px;">Email Address</p>
-              <p style="margin:0;font-size:15px;color:#2563A8;">${email}</p>
-            </td>
-            <td width="4%"></td>
-            <td width="48%" style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:16px;vertical-align:top;">
-              <p style="margin:0 0 4px;font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.8px;">Phone Number</p>
-              <p style="margin:0;font-size:15px;color:#0F172A;">${phone || 'Not provided'}</p>
-            </td>
-          </tr>
-        </table>
+            <!-- HEADER -->
+            <tr>
+              <td style="background:linear-gradient(135deg,#14532D 0%,#166534 60%,#15803D 100%);border-radius:12px 12px 0 0;padding:36px 40px;text-align:center;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none" style="margin-bottom:12px;display:block;margin-left:auto;margin-right:auto;">
+                  <rect width="48" height="48" rx="12" fill="rgba(255,255,255,0.10)"/>
+                  <rect x="10" y="28" width="6" height="12" rx="2" fill="#F59E0B"/>
+                  <rect x="21" y="20" width="6" height="20" rx="2" fill="#FCD34D"/>
+                  <rect x="32" y="12" width="6" height="28" rx="2" fill="#F59E0B"/>
+                  <polyline points="13,28 24,20 35,12" stroke="#FCD34D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                  <circle cx="13" cy="28" r="2.5" fill="#FCD34D"/>
+                  <circle cx="24" cy="20" r="2.5" fill="#FCD34D"/>
+                  <circle cx="35" cy="12" r="2.5" fill="#FCD34D"/>
+                </svg>
+                <h1 style="margin:0;color:#FCD34D;font-size:22px;font-weight:700;letter-spacing:0.5px;">RPD Capital Finance</h1>
+                <p style="margin:6px 0 0;color:#BBF7D0;font-size:13px;letter-spacing:1px;text-transform:uppercase;">Smart Lending. Trusted Growth.</p>
+              </td>
+            </tr>
 
-        <!-- Message Box -->
-        <p style="margin:0 0 8px;font-size:12px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.8px;">Message</p>
-        <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:18px;">
-          <p style="margin:0;font-size:14px;line-height:1.7;color:#334155;">${message}</p>
-        </div>
+            <!-- GOLD ACCENT BAR -->
+            <tr><td style="background:#F59E0B;height:4px;"></td></tr>
 
-        <!-- CTA -->
-        <div style="margin-top:28px;text-align:center;">
-          <a href="mailto:${email}" style="display:inline-block;background:#2563A8;color:#FFFFFF;font-size:14px;font-weight:600;padding:12px 32px;border-radius:8px;text-decoration:none;">
-            Reply to ${name}
-          </a>
-        </div>
-      `;
+            <!-- BODY -->
+            <tr>
+              <td style="background:#FFFFFF;padding:36px 40px;">
+
+                <div style="background:#F0FDF4;border-left:4px solid #16A34A;border-radius:0 8px 8px 0;padding:14px 18px;margin-bottom:28px;">
+                  <p style="margin:0;font-size:13px;font-weight:600;color:#14532D;text-transform:uppercase;letter-spacing:0.5px;">🔔 New Enquiry Received</p>
+                </div>
+
+                <h2 style="margin:0 0 24px;font-size:20px;color:#14532D;font-weight:700;">Lead Details</h2>
+
+                <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;">
+                  <tr>
+                    <td width="48%" style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:8px;padding:16px;vertical-align:top;">
+                      <p style="margin:0 0 4px;font-size:11px;font-weight:600;color:#16A34A;text-transform:uppercase;letter-spacing:0.8px;">Full Name</p>
+                      <p style="margin:0;font-size:15px;font-weight:600;color:#14532D;">${name}</p>
+                    </td>
+                    <td width="4%"></td>
+                    <td width="48%" style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;padding:16px;vertical-align:top;">
+                      <p style="margin:0 0 4px;font-size:11px;font-weight:600;color:#B45309;text-transform:uppercase;letter-spacing:0.8px;">Service Requested</p>
+                      <p style="margin:0;font-size:15px;font-weight:600;color:#92400E;">${service}</p>
+                    </td>
+                  </tr>
+                  <tr><td colspan="3" style="padding:8px 0;"></td></tr>
+                  <tr>
+                    <td width="48%" style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:8px;padding:16px;vertical-align:top;">
+                      <p style="margin:0 0 4px;font-size:11px;font-weight:600;color:#16A34A;text-transform:uppercase;letter-spacing:0.8px;">Email Address</p>
+                      <p style="margin:0;font-size:15px;color:#15803D;">${email}</p>
+                    </td>
+                    <td width="4%"></td>
+                    <td width="48%" style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:8px;padding:16px;vertical-align:top;">
+                      <p style="margin:0 0 4px;font-size:11px;font-weight:600;color:#16A34A;text-transform:uppercase;letter-spacing:0.8px;">Phone Number</p>
+                      <p style="margin:0;font-size:15px;color:#14532D;">${phone || 'Not provided'}</p>
+                    </td>
+                  </tr>
+                </table>
+
+                <p style="margin:0 0 8px;font-size:12px;font-weight:600;color:#16A34A;text-transform:uppercase;letter-spacing:0.8px;">Message</p>
+                <div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:8px;padding:18px;">
+                  <p style="margin:0;font-size:14px;line-height:1.7;color:#166534;">${message}</p>
+                </div>
+
+                <div style="margin-top:28px;text-align:center;">
+                  <a href="mailto:${email}" style="display:inline-block;background:linear-gradient(135deg,#15803D,#166534);color:#FCD34D;font-size:14px;font-weight:700;padding:12px 32px;border-radius:8px;text-decoration:none;letter-spacing:0.3px;">
+                    Reply to ${name}
+                  </a>
+                </div>
+
+              </td>
+            </tr>
+
+            <!-- GOLD ACCENT BAR -->
+            <tr><td style="background:#F59E0B;height:3px;"></td></tr>
+
+            <!-- FOOTER -->
+            <tr>
+              <td style="background:#F0FDF4;border-radius:0 0 12px 12px;padding:24px 40px;">
+                <p style="margin:0 0 4px;font-size:13px;color:#15803D;">
+                  📍 Chennai – 600129 &nbsp;|&nbsp; 📞 +91 96633 16054
+                </p>
+                <p style="margin:0;font-size:12px;color:#16A34A;">
+                  This is an automated message from RPD Capital Finance.
+                </p>
+              </td>
+            </tr>
+
+          </table>
+        </td>
+      </tr>
+    </table>
+  </div>
+`;
+
+
 
       /* -----------------------
          USER AUTO-REPLY EMAIL
